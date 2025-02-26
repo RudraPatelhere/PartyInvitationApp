@@ -25,22 +25,47 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Party" asp-action="Index">Parties</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - PartyInvitationApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <!-- Footer with First Visit Date & Time Tracking -->
+    <footer class="border-top footer text-muted bg-light p-3">
+        <div class="container text-center">
+            @{
+                string visitTimestamp = Context.Request.Cookies["FirstVisit"];
+
+                if (string.IsNullOrEmpty(visitTimestamp))
+                {
+                    // Save full date and time in "yyyy-MM-dd HH:mm:ss" format
+                    visitTimestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    Context.Response.Cookies.Append("FirstVisit", visitTimestamp, new CookieOptions
+                {
+                    Expires = DateTime.Now.AddYears(1), // Cookie expires in 1 year
+                    HttpOnly = true // Makes cookie more secure
+                });
+
+                    <p>Welcome to PartyInvitationApp! This is your first visit on <strong>@visitTimestamp</strong>.</p>
+                }
+                else
+                {
+                    <p>Welcome back! You first visited on <strong>@visitTimestamp</strong>.</p>
+                }
+            }
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -1,21 +1,24 @@
-/* Base Styling */
-html {
-    font-size: 14px;
-}
-
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
-
+/* General Styles */
 body {
     background-color: #f8f9fa;
     font-family: 'Poppins', sans-serif;
-    margin-bottom: 60px;
 }
 
-/* Centered Content */
+/* Navbar Styling */
+.navbar {
+    background-color: #007bff !important;
+}
+
+    .navbar a.nav-link {
+        color: white !important;
+        font-weight: bold;
+    }
+
+        .navbar a.nav-link:hover {
+            text-decoration: underline;
+        }
+
+/* Centered Container */
 .container {
     margin-top: 30px;
 }
@@ -24,76 +27,72 @@ body {
 .table {
     border-collapse: collapse;
     width: 100%;
+    background-color: white;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 }
 
     .table th {
         background-color: #343a40;
         color: white;
         padding: 10px;
+        text-align: center;
     }
 
     .table td {
         padding: 10px;
-        border-bottom: 1px solid #ddd;
+        text-align: center;
     }
 
 .table-hover tbody tr:hover {
     background-color: #f1f1f1;
 }
 
-/* Button Enhancements */
+/* Button Styling */
 .btn {
-    border-radius: 6px;
-    padding: 8px 15px;
-    transition: all 0.3s ease-in-out;
-    text-transform: uppercase;
-    font-weight: 600;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
 }
 
     .btn:hover {
         transform: scale(1.05);
-        opacity: 0.9;
     }
 
-/* Primary Button */
 .btn-primary {
     background-color: #007bff;
-    border: none;
+    border-color: #007bff;
 }
 
-    .btn-primary:hover {
-        background-color: #0056b3;
-    }
-
-/* Info Button */
-.btn-info {
-    background-color: #17a2b8;
-    border: none;
-}
-
-    .btn-info:hover {
-        background-color: #117a8b;
-    }
-
-/* Warning Button */
 .btn-warning {
     background-color: #ffc107;
-    border: none;
+    border-color: #ffc107;
     color: black;
 }
 
-    .btn-warning:hover {
-        background-color: #d39e00;
-    }
-
-/* Danger Button */
 .btn-danger {
     background-color: #dc3545;
-    border: none;
+    border-color: #dc3545;
 }
 
-    .btn-danger:hover {
-        background-color: #a71d2a;
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+/* Form Styling */
+.form-group label {
+    font-weight: bold;
+}
+
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    transition: 0.3s ease-in-out;
+}
+
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
     }
 
 /* Footer */
@@ -102,7 +101,21 @@ body {
     color: white;
     text-align: center;
     padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .table {
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .container {
+        padding: 10px;
+    }
 }

@@ -1,47 +1,38 @@
-@model IEnumerable<PartyInvitationApp.Models.PartyModels.Party>
+﻿@model IEnumerable<PartyInvitationApp.Models.PartyModels.Party>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Party Manager";
 }
 
-<h1>Index</h1>
+<h2 class="text-center text-primary mt-3">Party Manager</h2>
+<p class="text-center">Manage your parties and invitations here.</p>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+<div class="text-end mb-3">
+    <a asp-action="Create" class="btn btn-success">➕ Create New Party</a>
+</div>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EventDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Location)
-            </th>
-            <th></th>
+            <th>@Html.DisplayNameFor(model => model.First().Description)</th>
+            <th>@Html.DisplayNameFor(model => model.First().EventDate)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Location)</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EventDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PartyId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PartyId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PartyId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>@item.EventDate.ToShortDateString()</td>
+                <td>@Html.DisplayFor(modelItem => item.Location)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PartyId" class="btn btn-warning btn-sm">✏️ Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.PartyId" class="btn btn-info btn-sm">👁️ Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.PartyId" class="btn btn-danger btn-sm">🗑️ Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
