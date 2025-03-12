@@ -1,49 +1,63 @@
-@model PartyInvitationApp.Models.PartyModels.Invitation
+﻿@model PartyInvitationApp.Models.PartyModels.Invitation
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Invitation";
 }
 
-<h1>Edit</h1>
+<h2 class="text-center text-primary mt-3">✏️ Edit Invitation</h2>
 
-<h4>Invitation</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="InvitationId" />
-            <div class="form-group">
-                <label asp-for="GuestName" class="control-label"></label>
-                <input asp-for="GuestName" class="form-control" />
-                <span asp-validation-for="GuestName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GuestEmail" class="control-label"></label>
-                <input asp-for="GuestEmail" class="form-control" />
-                <span asp-validation-for="GuestEmail" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <select asp-for="Status" class="form-control"></select>
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PartyId" class="control-label"></label>
-                <select asp-for="PartyId" class="form-control" asp-items="ViewBag.PartyId"></select>
-                <span asp-validation-for="PartyId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div class="card p-4 mx-auto shadow-sm" style="max-width: 500px;">
+    <h5 class="text-center">Editing Invitation for: <span class="text-success">@Model.GuestName</span></h5>
+    <p class="text-center text-muted">Email: <strong>@Model.GuestEmail</strong></p>
+
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="InvitationId" />
+
+        <div class="form-group">
+            <label asp-for="GuestName" class="control-label"></label>
+            <input asp-for="GuestName" class="form-control" required />
+            <span asp-validation-for="GuestName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="GuestEmail" class="control-label"></label>
+            <input asp-for="GuestEmail" class="form-control" type="email" required />
+            <span asp-validation-for="GuestEmail" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Status" class="control-label"></label>
+            <select asp-for="Status" class="form-control">
+                <option value="InviteSent">📩 Invite Sent</option>
+                <option value="RespondedYes" class="text-success">✅ Responded Yes</option>
+                <option value="RespondedNo" class="text-danger">❌ Responded No</option>
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PartyId" class="control-label"></label>
+            <select asp-for="PartyId" class="form-control" asp-items="ViewBag.PartyId"></select>
+            <span asp-validation-for="PartyId" class="text-danger"></span>
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary px-4">
+                <i class="fas fa-save"></i> Save Changes
+            </button>
+        </div>
+    </form>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="text-center mt-4">
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back to Invitations
+    </a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -1,0 +1,55 @@
+﻿@model PartyInvitationApp.Models.PartyModels.Invitation
+
+@{
+    ViewData["Title"] = "RSVP";
+}
+
+<h2 class="text-center text-primary mt-3">🎉 RSVP Invitation</h2>
+
+@if (Model.Party != null)
+{
+    <p class="text-center">Please confirm your attendance for <strong>@Model.Party.Description</strong>.</p>
+}
+else
+{
+    <p class="text-center text-danger">⚠ Party details not found.</p>
+}
+
+<div class="card p-4 mx-auto shadow-sm" style="max-width: 500px;">
+    <h5 class="text-center">Guest: <span class="text-success">@Model.GuestName</span></h5>
+    <p class="text-center text-muted">Email: <strong>@Model.GuestEmail</strong></p>
+
+    <form asp-action="RSVP" method="post">
+        <input type="hidden" asp-for="InvitationId" />
+
+        <div class="form-group text-center">
+            <label class="form-label"><strong>Your Response:</strong></label><br />
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="response" id="rsvpYes" value="RespondedYes" required />
+                <label class="form-check-label text-success fw-bold" for="rsvpYes">
+                    ✅ Yes
+                </label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="response" id="rsvpNo" value="RespondedNo" required />
+                <label class="form-check-label text-danger fw-bold" for="rsvpNo">
+                    ❌ No
+                </label>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary px-4">
+                <i class="fas fa-paper-plane"></i> Submit Response
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="text-center mt-4">
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back to Invitations
+    </a>
+</div>

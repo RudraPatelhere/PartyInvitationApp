@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PartyInvitationApp.Models.PartyModels;
+using PartyInvitationApp.Services; // Import the EmailService namespace
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,9 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true; // This makes the cookie secure
     options.Cookie.IsEssential = true; // So this ensures the cookie always works
 });
+
+// ✅ Add EmailService
+builder.Services.AddScoped<EmailService>();
 
 var app = builder.Build();
 

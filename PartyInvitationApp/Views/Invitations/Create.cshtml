@@ -1,47 +1,41 @@
 @model PartyInvitationApp.Models.PartyModels.Invitation
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Invitation";
 }
 
-<h1>Create</h1>
+<h2 class="text-center text-primary mt-3">Create Invitation</h2>
 
-<h4>Invitation</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row justify-content-center">
+    <div class="col-md-6">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="form-group">
                 <label asp-for="GuestName" class="control-label"></label>
-                <input asp-for="GuestName" class="form-control" />
+                <input asp-for="GuestName" class="form-control" required />
                 <span asp-validation-for="GuestName" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="GuestEmail" class="control-label"></label>
-                <input asp-for="GuestEmail" class="form-control" />
+                <input asp-for="GuestEmail" class="form-control" type="email" required />
                 <span asp-validation-for="GuestEmail" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <select asp-for="Status" class="form-control"></select>
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PartyId" class="control-label"></label>
-                <select asp-for="PartyId" class ="form-control" asp-items="ViewBag.PartyId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+            <!-- Hidden Party ID Field (Pre-filled) -->
+            <input type="hidden" asp-for="PartyId" value="@ViewBag.PartyId" />
+
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-primary">Send Invitation</button>
+                <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

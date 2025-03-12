@@ -1,4 +1,4 @@
-/* General Styles */
+﻿/* General Styles */
 body {
     background-color: #f8f9fa;
     font-family: 'Poppins', sans-serif;
@@ -34,12 +34,12 @@ body {
     .table th {
         background-color: #343a40;
         color: white;
-        padding: 10px;
+        padding: 12px;
         text-align: center;
     }
 
     .table td {
-        padding: 10px;
+        padding: 12px;
         text-align: center;
     }
 
@@ -47,10 +47,52 @@ body {
     background-color: #f1f1f1;
 }
 
-/* Button Styling */
+/* ✅ Invitation Section Styling */
+.invitation-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+    .invitation-card h4 {
+        font-weight: bold;
+        color: #007bff;
+        text-align: center;
+    }
+
+/* ✅ Invitation Table Styling */
+.invitation-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background-color: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+    .invitation-table th {
+        background-color: #343a40;
+        color: white;
+        padding: 12px;
+        text-align: center;
+    }
+
+    .invitation-table td {
+        padding: 12px;
+        text-align: center;
+    }
+
+    .invitation-table tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+/* ✅ Styled Buttons */
 .btn {
     border-radius: 8px;
     transition: 0.3s ease-in-out;
+    font-weight: bold;
+    padding: 10px 15px;
 }
 
     .btn:hover {
@@ -77,6 +119,33 @@ body {
     background-color: #17a2b8;
     border-color: #17a2b8;
 }
+
+/* ✅ Custom Buttons */
+.btn-invite {
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+    .btn-invite:hover {
+        background-color: #218838;
+        transform: scale(1.05);
+    }
+
+.btn-rsvp {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+    .btn-rsvp:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
 
 /* Form Styling */
 .form-group label {
